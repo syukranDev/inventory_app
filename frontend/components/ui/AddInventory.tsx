@@ -14,8 +14,16 @@ import { Input } from './input'
 import { Label } from './label'
 import { Textarea } from './textarea'
 import SubmitButton from './SubmitButton'
+import {
+    Select,
+    SelectContent,
+    SelectGroup,
+    SelectItem,
+    SelectLabel,
+    SelectTrigger,
+    SelectValue,
+  } from "@/components/ui/select"
   
-
 const AddInventory = () => {
   return (
     <form>
@@ -40,24 +48,29 @@ const AddInventory = () => {
                                             placeholder='Title of your inventory'
                                         />
 
-                                        <div className='flex flex-col gap-y-2'>
+                                        <div className='flex flex-col gap-y-2 mt-2'>
                                             <Label>Description</Label>
                                             <Textarea
                                                 required
                                                 name='description'
-                                                placeholder='Describe your inventory here'
+                                                placeholder='Describe your inventory'
                                             />
                                         </div>
 
-                                        <Label>Type</Label>
-                                        <Input
-                                            required
-                                            type='text'
-                                            name='type'
-                                            placeholder='Write a type...'
-                                        />
+                                        <Label className='mt-2'>Type</Label>
+                                        <Select>
+                                            <SelectTrigger className="w-[180px]">
+                                                <SelectValue placeholder="Select a type" />
+                                            </SelectTrigger>
+                                            <SelectContent>
+                                                <SelectGroup>
+                                                <SelectItem value="CTN">Carton</SelectItem>
+                                                <SelectItem value="PK">Pack</SelectItem>
+                                                </SelectGroup>
+                                            </SelectContent>
+                                        </Select>
 
-                                        <Label>Quantiy</Label>
+                                        <Label className='mt-2'>Quantity</Label>
                                         <Input
                                             required
                                             type='text'
@@ -65,25 +78,25 @@ const AddInventory = () => {
                                             placeholder='Write a quantity...'
                                         />
 
-                                        <Label>Status</Label>
-                                        <Input
-                                            required
-                                            type='text'
-                                            name='status'
-                                            placeholder='Write a status...'
-                                        />
-
+                                        <Label className='mt-2'>Status</Label>
+                                        <Select>
+                                            <SelectTrigger className="w-[180px]">
+                                                <SelectValue placeholder="Select a status" />
+                                            </SelectTrigger>
+                                            <SelectContent>
+                                                <SelectGroup>
+                                                <SelectItem value="active">Active</SelectItem>
+                                                <SelectItem value="inactive">Inactive</SelectItem>
+                                                </SelectGroup>
+                                            </SelectContent>
+                                        </Select>
                                     </div>
-
-                
-
-                
 
                 <DialogFooter className="">
                     <DialogClose asChild>
                         <Button type="button" variant="secondary">Close</Button>
                     </DialogClose>
-                    
+
                     <SubmitButton title='Add'/>
                 </DialogFooter>
             </DialogContent>

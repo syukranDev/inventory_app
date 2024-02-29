@@ -76,6 +76,47 @@ router.get('/o/:id', async (req, res) => {
   return res.send({ status: 'success', data })
 })
 
+router.post('/update/:id', async (req, res) => {
+  let id = req.params.id;
+  let data, transaction;
+
+  let  {desc, type, quantity, status} = req.body;
+  if (!desc || !type || !quantity || !status) return res.status(422).send({errMsg: 'Missing payload, please check.'})
+
+  try {
+    data = await db.inventory.findOne({
+      where:{ id: {[Op.eq]: id} },
+      raw: true,
+      logging: console.log
+    });
+
+    if (!data) return res.status(404).send({status: 'failed', errMsg: `Inventory ID-${id} not found.`})
+    
+    transaction = await sq.transaction();
+
+    await db.inventory.update({ 
+      desc, type, quantity, status,
+      updated_by: 'system_update'
+    },
+      {
+        where: {
+          id: { [Op.eq]: id }
+        },  
+        raw: true, logging: console.log, 
+        transaction
+      }
+    );
+
+    await transaction.commit();
+
+  } catch (err){
+    if(transaction) await transaction.rollback();
+    console.error(err);
+    return res.status(500).send({status: 'failed', errMsg: `Failed to get inventory #${id}`})
+  }
+  return res.send({ status: 'success', message: `Update successfully for ID-${id}` })
+})
+
 router.post('/add', async (req, res) => {
   let { name, desc, type, quantity, status, loggedInUser } = req.body
 
@@ -103,8 +144,8 @@ router.post('/add', async (req, res) => {
         type, 
         quantity: quantity ? quantity : 0,
         status: status ? status : 'active',
-        created_by: loggedInUser || 'system',
-        updated_by: loggedInUser || 'system'
+        created_by: loggedInUser || 'system_create',
+        updated_by: loggedInUser || 'system_create'
     });
 
     await transaction.commit();
