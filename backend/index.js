@@ -16,6 +16,9 @@ app.use (function (err, req, res, next){
 
 app.use('/api/inventory', inventoryRouter)
 
+// app.use('/api/auth', authRouter)
+// app.use('/api/user', inventoryRouter)
+
 app.listen(PORT, () => {
     console.log(`Connected to my server at port ${PORT}`)
 })
