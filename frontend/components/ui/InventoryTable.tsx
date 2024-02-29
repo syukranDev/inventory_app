@@ -33,7 +33,7 @@ const InventoryTable = ({contents, isDelete}: {contents:any, isDelete:any}) => {
                 <TableBody>
                     {contents.map((d:any) => (
                     <TableRow key={d.id}>
-                        <TableCell>{(d.name).substring(0, 20).concat('...')}</TableCell>
+                        <TableCell>{d.name}</TableCell>
                         <TableCell>{d.quantity}</TableCell>
                         <TableCell>{d.type}</TableCell>
                         <TableCell className="font-medium">

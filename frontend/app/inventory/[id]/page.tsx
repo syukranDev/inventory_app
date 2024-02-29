@@ -60,9 +60,7 @@ const page = ({ params } : { params: {id : string}}) => {
             console.error('Error fetching data:', error);
         }
 
-        // revalidatePath('/dashboard') // adding in case no update found upon head to /dashboard due to cache
-
-        
+        // revalidatePath('/inventory') // adding in case no update found upon head to /dashboard due to cache
         return redirect('/inventory')
     }
 
@@ -140,7 +138,7 @@ const page = ({ params } : { params: {id : string}}) => {
                                         <Label>Quantiy</Label>
                                         <Input
                                             required
-                                            type='text'
+                                            type='number'
                                             name='quantity'
                                             placeholder='Write a quantity...'
                                             value={(data as any)?.quantity}
@@ -166,10 +164,10 @@ const page = ({ params } : { params: {id : string}}) => {
                             </Card>
                             <Alert className="mt-5">
                                 <RocketIcon className="h-4 w-4" />
-                                <AlertTitle>Dev Info!</AlertTitle>
+                                <AlertTitle>Info</AlertTitle>
                                 <AlertDescription>
-                                 • Name is disabled on purpose. <br/>
-                                 • Status other than 'active' will be resulted 'inactive' <br/>
+                                 • Name is disabled (on purpose). <br/>
+                                 • Status other than 'active' will be resulted 'inactive' (on purpose) <br/>
                                 </AlertDescription>
                             </Alert>
                         </div>

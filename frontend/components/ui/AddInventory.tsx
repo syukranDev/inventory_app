@@ -23,8 +23,53 @@ import {
     SelectTrigger,
     SelectValue,
   } from "@/components/ui/select"
+  import { useState, useEffect } from 'react'
+  import { redirect } from 'next/navigation'
+import { revalidatePath, unstable_noStore as noStore } from 'next/cache'
+import axios from 'axios'
   
 const AddInventory = () => {
+    const [data, setData] = useState({
+        name: '',
+        desc: '',
+        type: '',
+        quantity: '',
+        status: ''
+    });
+
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const { name, value } = e.target;
+        setData(prevData => ({
+            ...prevData,
+            [name]: value
+        }));
+    };
+
+    async function addNewInventory(formData: FormData) {
+
+        const name = formData.get('name') as string;
+        const desc = formData.get('desc') as string;
+        const type = formData.get('type') as string;
+        const quantity = formData.get('quantity') as string;
+        const status = formData.get('status') as string;
+
+        let payload = { name, desc, type, quantity, status}
+
+        try {
+            const response = await axios.post(`http://localhost:3003/api/inventory/add`, payload); // Replace with your API endpoint
+            if (response.status === 200) { 
+                alert(`Info - Inventory Updated Succesfully.`)
+            }
+            
+    
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+
+        // revalidatePath('/inventory') // adding in case no update found upon head to /dashboard due to cache
+        return redirect('/inventory')
+    }
+
   return (
     <form>
         <Dialog>
@@ -40,65 +85,68 @@ const AddInventory = () => {
                 </DialogHeader>
 
                 <div className="gap-y-2 flex flex-col">
-                                        <Label>Name</Label>
-                                        <Input
-                                            required
-                                            type='text'
-                                            name='title'
-                                            placeholder='Title of your inventory'
-                                        />
+                    <form action={addNewInventory}>
+                        <div className="gap-y-4 flex flex-col">
+                            <Label>Name</Label>
+                            <Input
+                                required
+                                type='text'
+                                name='name'
+                                placeholder='Title of your inventory'
+                                value={(data as any)?.name}
+                                onChange={handleInputChange}
+                            />
 
-                                        <div className='flex flex-col gap-y-2 mt-2'>
-                                            <Label>Description</Label>
-                                            <Textarea
-                                                required
-                                                name='description'
-                                                placeholder='Describe your inventory'
-                                            />
-                                        </div>
+                            <div className='flex flex-col gap-y-2'>
+                                <Label>Description</Label>
+                                <Textarea
+                                    required
+                                    name='desc'
+                                    placeholder='Describe your inventory here'
+                                    value={(data as any)?.desc}
+                                    onChange={handleInputChange}
+                                />
+                            </div>
 
-                                        <Label className='mt-2'>Type</Label>
-                                        <Select>
-                                            <SelectTrigger className="w-[180px]">
-                                                <SelectValue placeholder="Select a type" />
-                                            </SelectTrigger>
-                                            <SelectContent>
-                                                <SelectGroup>
-                                                <SelectItem value="CTN">Carton</SelectItem>
-                                                <SelectItem value="PK">Pack</SelectItem>
-                                                </SelectGroup>
-                                            </SelectContent>
-                                        </Select>
+                            <Label>Type</Label>
+                            <Input
+                                required
+                                type='text'
+                                name='type'
+                                placeholder='Write a type...'
+                                value={(data as any)?.type}
+                                onChange={handleInputChange}
+                            />
 
-                                        <Label className='mt-2'>Quantity</Label>
-                                        <Input
-                                            required
-                                            type='text'
-                                            name='title'
-                                            placeholder='Write a quantity...'
-                                        />
+                            <Label>Quantiy</Label>
+                            <Input
+                                required
+                                type='number'
+                                name='quantity'
+                                placeholder='Write a quantity...'
+                                value={(data as any)?.quantity}
+                                onChange={handleInputChange}
+                            />
 
-                                        <Label className='mt-2'>Status</Label>
-                                        <Select>
-                                            <SelectTrigger className="w-[180px]">
-                                                <SelectValue placeholder="Select a status" />
-                                            </SelectTrigger>
-                                            <SelectContent>
-                                                <SelectGroup>
-                                                <SelectItem value="active">Active</SelectItem>
-                                                <SelectItem value="inactive">Inactive</SelectItem>
-                                                </SelectGroup>
-                                            </SelectContent>
-                                        </Select>
-                                    </div>
+                            <Label>Status</Label>
+                            <Input
+                                required
+                                type='text'
+                                name='status'
+                                placeholder='Write a status...'
+                                value={(data as any)?.status}
+                                onChange={handleInputChange}
+                            />
+                            <DialogFooter className="">
+                                <DialogClose asChild>
+                                    <Button type="button" variant="secondary">Close</Button>
+                                </DialogClose>
 
-                <DialogFooter className="">
-                    <DialogClose asChild>
-                        <Button type="button" variant="secondary">Close</Button>
-                    </DialogClose>
-
-                    <SubmitButton title='Add'/>
-                </DialogFooter>
+                                <SubmitButton title='Add'/>
+                            </DialogFooter>
+                        </div>
+                    </form>
+                </div>        
             </DialogContent>
         </Dialog>
     </form>

@@ -21,7 +21,7 @@ const page = () => {
 
   const page:any = parseInt(searchCurrentPage) || 1;
   const pageSize = 5;
-  const limit_rows = 4
+  const limit_rows = 5
 
   //Below effect for first time load
   useEffect(() => {
