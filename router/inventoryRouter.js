@@ -9,7 +9,6 @@ const dayjs = require('dayjs');
 const today = dayjs().format('YYYY-MM-DD');
 
 router.get('/list', async (req, res) => {
-
   let page = req.query.page;
   let {date}  = req.query;
   let sortColumn = req.query.sort_column;
@@ -84,9 +83,18 @@ router.post('/add', async (req, res) => {
   if (!desc) return res.status(422).send({errMsg: 'Missing desc'})
   if (!type) return res.status(422).send({errMsg: 'Missing type'})
 
-  let transaction;
+  let transaction, isNameExist;
   let id = uuid();
+  
   try {
+    isNameExist = await db.inventory.findOne({
+      where:{
+        name:{ [Op.eq]: name},
+      }
+    });
+
+    if (isNameExist) return res.status(422).send({errMsg: 'Please choose another name as it already exist.'})
+
     transaction = await sq.transaction();
     await db.inventory.create({
         id,
