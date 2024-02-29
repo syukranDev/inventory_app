@@ -21,6 +21,7 @@ import { revalidatePath, unstable_noStore as noStore } from 'next/cache'
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { RocketIcon } from "@radix-ui/react-icons"
 import DeleteInventory from "@/components/ui/DeleteInventory"
+import Image from "next/image"
 
 const page = ({ params } : { params: {id : string}}) => {
     const [data, setData] = useState({
@@ -103,6 +104,15 @@ const page = ({ params } : { params: {id : string}}) => {
                                 </CardHeader>
                                 <CardContent className='flex flex-col gap-y-5'>
                                     <div className="gap-y-2 flex flex-col">
+                                        <div className="flex justify-center items-center h-full">
+                                            <Image 
+                                                src={'https://i.ibb.co/dLRr1mN/packaging-boxes-stacked-pallets-storage-warehouse-supply-chain-storehouse-shipping-warehouse-36860-1.jpg'}
+                                                alt={'sfg'}
+                                                height={200}
+                                                width={400}
+                                                className="rounded-md"
+                                            ></Image>
+                                        </div>
                                         <Label>Name</Label>
                                         <Input
                                             disabled={true}
@@ -166,7 +176,8 @@ const page = ({ params } : { params: {id : string}}) => {
                                 <RocketIcon className="h-4 w-4" />
                                 <AlertTitle>Info</AlertTitle>
                                 <AlertDescription>
-                                 • Name is disabled (on purpose). <br/>
+                                 • Name is disabled (on purpose) <br/>
+                                 • Static image is used for this view (on purpose) <br/>
                                  • Status other than 'active' will be resulted 'inactive' (on purpose) <br/>
                                 </AlertDescription>
                             </Alert>

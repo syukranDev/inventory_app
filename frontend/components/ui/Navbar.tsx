@@ -16,7 +16,7 @@ const Navbar = async () => {
     // const user = await getUser();
     // console.log({user})
 
-    let isUserLoggedIn = true;
+    let isUserLoggedIn = false;
 
     return (
         <nav className='border-b bg-background h-[6vh] flex items-center'>
