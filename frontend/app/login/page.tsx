@@ -35,7 +35,7 @@ const formSchema = z.object({
   }),
 })
 
-let isLoggedIn: any = localStorage.getItem('isLoggedIn')
+let isLoggedIn: any = typeof window !== 'undefined' ? localStorage.getItem('isLoggedIn') : null;
 
 const page = () => {
   if(isLoggedIn == 'true') redirect('/');
