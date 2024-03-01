@@ -27,7 +27,7 @@ const UserNav = ({name, email, image}: {name: string, email: string, image: stri
             forceMount
         >
             <DropdownMenuLabel>
-                <div className="flex flex-col space-y-1">
+                <div className="flex justify-between space-x-1">
                     <p className='text-sm font-medium leading-none'>{name}</p>
                     <p className='text-xs leading-none text-muted-foreground'>{email}</p>
                 </div>

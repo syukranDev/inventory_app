@@ -2,25 +2,25 @@
 import Link from "next/link"
 import { ThemeToggle } from "./ThemeToggle"
 import { Button } from "./button";
-// import {RegisterLink, LoginLink, LogoutLink} from "@kinde-oss/kinde-auth-nextjs/components";
-// import {getKindeServerSession} from "@kinde-oss/kinde-auth-nextjs/server";
 import UserNav from "./UserNav";
-
-let user = {
-    email: 'admin@myapp.com',
-    picture: '',
-    given_name: 'admin'
+import { useEffect, useState } from "react";
+type UserData = {
+    picture: string;
+    name: string;
+    status: string;
 }
 
-let userData: any = localStorage.getItem('data_user') ;
-const isLoggedIn: any = localStorage.getItem('isLoggedIn')
-userData = JSON.parse(userData)
-
-
 const Navbar = () => {
-    // const { isAuthenticated, getUser } = getKindeServerSession();
-    // const user = await getUser();
-    // console.log({user})
+    const [data, setData] = useState('');
+    const [userData, setUserData] = useState<UserData | null>(null); // Specify UserData as the type for userData
+
+    useEffect(() => {
+        let userDataFromLocalStorage: string | null = localStorage.getItem('data_user');
+        let isLoggedIn: string | null = localStorage.getItem('isLoggedIn');
+
+        setData(isLoggedIn || ''); // Use default value if null
+        setUserData(userDataFromLocalStorage ? JSON.parse(userDataFromLocalStorage) : null);
+    }, [data, userData]);
 
     return (
         <nav className='border-b bg-background h-[6vh] flex items-center'>
@@ -33,17 +33,17 @@ const Navbar = () => {
                     <ThemeToggle/>
 
                     { 
-                        (isLoggedIn == 'true')? (
-                            <UserNav email={'dummy@gmail.com'} image={'https://github.com/shadcn.png'} name={userData?.name as string} />
+                        (data === 'true') && userData ? (
+                            <UserNav email={userData.status} image={userData.picture} name={userData.name } />
                         ) : (
                             <div className="flex items-center gap-x-5">
-                                    <Link href={'/login'}>
-                                        <Button>Sign in</Button>
-                                    </Link>
+                                <Link href={'/login'}>
+                                    <Button>Sign in</Button>
+                                </Link>
                                 
-                                    {/* <Button variant={'secondary'}>
+                                {/* <Button variant={'secondary'}>
                                     Sign up
-                                    </Button> */}
+                                </Button> */}
                             </div>
                         )
                     }
@@ -53,4 +53,4 @@ const Navbar = () => {
     )
 }
 
-export default Navbar
+export default Navbar;

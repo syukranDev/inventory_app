@@ -3,13 +3,11 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import axios from "axios";
 import { redirect, useRouter } from 'next/navigation'
+import { revalidatePath } from "next/cache";
 
 let userData: any = localStorage.getItem('data_user') ;
 const isLoggedIn: any = localStorage.getItem('isLoggedIn')
 userData = JSON.parse(userData)
-
-console.log(isLoggedIn)
-
 
 export default function Home() {
   const router = useRouter();
@@ -36,7 +34,14 @@ export default function Home() {
               {/* <p>hello</p> */}
               <div className="">
                 <div>
-                  <h1 className="text-6xl font-semibold">Welcome, {userData?.name ||  'Anon'}!</h1>
+                  <h1 className="text-6xl font-semibold">
+
+                    {
+                      userData?.name ? 
+                      (`Welcome, ${userData?.name}`) 
+                      : ('InventoryApp')
+                    }
+                  </h1>
                 </div>
                 <h1 className="mt-5 mb-4 text-lg">A simple apps where you can try CRUD on inventory data.</h1>
                 {

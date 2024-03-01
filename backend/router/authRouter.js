@@ -43,14 +43,9 @@ router.post('/login', async (req, res) => {
       }
     );
 
+    data.isUserLoggedIn = true
+
     await transaction.commit();
-
-    data = await db.users.findOne({
-      where:{ id: {[Op.eq]: username} },
-      raw: true,
-      logging: console.log
-    });
-
   } catch (e) { 
     if(transaction) await transaction.rollback();
     console.error(e);

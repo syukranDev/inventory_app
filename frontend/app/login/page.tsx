@@ -56,20 +56,19 @@ const page = () => {
       password: values.password
     }
 
-    try {
+    // try {
       const response = await axios.post(`http://localhost:3003/api/auth/login`, payload); 
       if (response.status === 200) {
         localStorage.setItem('isLoggedIn', 'true');
         localStorage.setItem('data_user', JSON.stringify(response.data.data));
-        revalidatePath('/inventory')
         return router.push('/inventory')
       } else {
         if(response.status === 404)
-        alert(response)
+        alert('it fail bro')
       }
-    } catch (error) {
-        alert(`System Error`);
-    }
+    // } catch (error) {
+    //     alert(`System Error`);
+    // }
   }
 
   return (
@@ -80,7 +79,7 @@ const page = () => {
               <Card className="w-full">
                 <CardHeader>
                   <CardTitle className="text-center">Login In</CardTitle>
-                  <CardDescription className="text-center">Login your credentials. (guest : guest)</CardDescription>
+                  <CardDescription className="text-center">InventoryApp</CardDescription>
                 </CardHeader>
                 <CardContent>
                   <Form {...form}>
