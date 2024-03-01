@@ -7,6 +7,7 @@ const bodyParser = require('body-parser')
 
 const inventoryRouter = require('./router/inventoryRouter')
 const authRouter = require('./router/authRouter')
+const userRouter = require('./router/userRouter')
 
 app.use(cors());
 app.use(bodyParser.json({ limit: '5mb'}))
@@ -19,7 +20,7 @@ app.use (function (err, req, res, next){
 app.use('/api/inventory', inventoryRouter)
 
 app.use('/api/auth', authRouter)
-// app.use('/api/user', inventoryRouter)
+app.use('/api/user', userRouter)
 
 app.listen(PORT, () => {
     console.log(`Connected to my server at port ${PORT}`)

@@ -26,8 +26,6 @@ router.post('/login', async (req, res) => {
     if (!data) return res.status(404).send({status: 'failed', errMsg: `Username not found`})
     if (data.status !== 'active') return res.status(404).send({status: 'failed', errMsg: `Username not active. Please contact administrator.`})
 
-    data.permission = JSON.parse(data.permission)
-
     transaction = await sq.transaction();
 
     await db.users.update({ 

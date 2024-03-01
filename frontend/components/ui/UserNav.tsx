@@ -23,7 +23,7 @@ const UserNav = ({id, name, email, image}: {id: string, name: string, email: str
             localStorage.removeItem('data_user');
 
             // return router.push('/login');
-            window.location.href='/login'
+            window.location.href='/'
             }
         } catch(e) {
             alert(`System Error - ${e}`)

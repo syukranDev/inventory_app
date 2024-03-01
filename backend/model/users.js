@@ -22,7 +22,19 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.BOOLEAN,
         allowNull: false
       }, 
-      permission:{
+      permission_create:{
+        type: Sequelize.TEXT,
+        allowNull: false
+      }, 
+      permission_view:{
+        type: Sequelize.TEXT,
+        allowNull: false
+      }, 
+      permission_update:{
+        type: Sequelize.TEXT,
+        allowNull: false
+      }, 
+      permission_delete:{
         type: Sequelize.TEXT,
         allowNull: false
       }, 

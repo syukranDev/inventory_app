@@ -19,7 +19,7 @@ export default function Home() {
         localStorage.setItem('isLoggedIn', 'false');
         localStorage.removeItem('data_user');
         // return router.push('/login');
-        window.location.href='/login'
+        window.location.href='/'
       }
     } catch(e) {
       alert(`System Error - ${e}`)
