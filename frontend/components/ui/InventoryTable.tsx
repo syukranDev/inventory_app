@@ -24,7 +24,7 @@ const InventoryTable = ({contents, isDelete}: {contents:any, isDelete:any}) => {
                     <TableHead className="">Name</TableHead>
                     <TableHead>Quantity</TableHead>
                     <TableHead>Type</TableHead>
-                    <TableHead>Status</TableHead>
+                    <TableHead className="text-center">Status</TableHead>
                     <TableHead>Action</TableHead>
                     </TableRow>
                 </TableHeader>
@@ -34,7 +34,7 @@ const InventoryTable = ({contents, isDelete}: {contents:any, isDelete:any}) => {
                         <TableCell>{d.name}</TableCell>
                         <TableCell>{d.quantity}</TableCell>
                         <TableCell>{d.type}</TableCell>
-                        <TableCell className="font-medium">
+                        <TableCell className="font-mediu text-center">
                             {
                                 d.status == 'active' ? 
                                 (<Badge variant={'secondary'}>Active</Badge>) 

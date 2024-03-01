@@ -61,7 +61,9 @@ const page = () => {
       if (response.status === 200) {
         localStorage.setItem('isLoggedIn', 'true');
         localStorage.setItem('data_user', JSON.stringify(response.data.data));
-        return router.push('/inventory')
+        
+        // router.push('/inventory')
+        window.location.href='/inventory'
       } else {
         if(response.status === 404)
         alert('it fail bro')

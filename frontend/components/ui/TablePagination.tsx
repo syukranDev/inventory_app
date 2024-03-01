@@ -23,7 +23,7 @@ const TablePagination = ({pageSize, itemCount, currentPage, updateTableDataForBa
 
   return (
     <div className='flex justify-between'>
-       <p className='m-2'>Total Count: {itemCount}</p>
+       <p className='m-2'>Total Inventory Count: {itemCount}</p>
         <div className='flex m-2 gap-2'>
             <div className='m-2'>
                 <h1>Page {currentPage} of {pageCount}</h1>
@@ -36,11 +36,11 @@ const TablePagination = ({pageSize, itemCount, currentPage, updateTableDataForBa
                <DoubleArrowLeftIcon />
             </Button> */}
 
-            <Button color='gray' disabled={currentPage === 1} onClick={() => {changePage(currentPage - 1); updateTableDataForBackPagination();} }>
+            <Button size={"sm"}color='gray' disabled={currentPage === 1} onClick={() => {changePage(currentPage - 1); updateTableDataForBackPagination();} }>
                <ChevronLeftIcon />
             </Button>
 
-            <Button color='gray' disabled={currentPage === pageCount} onClick={() => {changePage(currentPage + 1); updateTableDataForForwardPagination();}}>
+            <Button size={"sm"} color='gray' disabled={currentPage === pageCount} onClick={() => {changePage(currentPage + 1); updateTableDataForForwardPagination();}}>
                <ChevronRightIcon />
             </Button>
 

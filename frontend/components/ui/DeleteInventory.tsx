@@ -28,7 +28,8 @@ const DeleteInventory = ({rowId}:any) => {
             console.error('Error fetching data:', error);
         }
 
-        router.push('/inventory')
+        // router.push('/inventory')
+        window.location.href='/inventory'
     }
 
     return (

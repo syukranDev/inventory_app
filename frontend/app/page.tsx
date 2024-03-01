@@ -18,7 +18,8 @@ export default function Home() {
       if (response.status === 200){
         localStorage.setItem('isLoggedIn', 'false');
         localStorage.removeItem('data_user');
-        return router.push('/login');
+        // return router.push('/login');
+        window.location.href='/login'
       }
     } catch(e) {
       alert(`System Error - ${e}`)

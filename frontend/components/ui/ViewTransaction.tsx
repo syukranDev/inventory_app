@@ -5,8 +5,8 @@ import { FaRegEye } from "react-icons/fa";
 const ViewTransaction = ({rowId}: any) => {
   return (
     <>
-      <Link href={`/inventory/${rowId}`} className='hover:bg-red-500'>
-          <FaRegEye size={20} />
+      <Link href={`/inventory/${rowId}`} className='hover:text-red-500 hover:cursor-pointer'>
+          {/* <FaRegEye size={20} /> */} More
       </Link>
     </>
   )
