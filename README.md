@@ -14,6 +14,15 @@ Permission:
 Permission CREATE, VIEW, UPDATE, DELETE applies on both users and inventory data.
 ```
 
+Misc:
+```
+>> Populate Data button can be seen by user's roles = 'admin' only'
+>> For the sake of simplicity and time constraint,
+   >>All backend API is unprotected. No JWT token needed.
+   >>Password is non-hashed.
+```
+
+
 ## Screenshot (in order)
 <img width="1164" alt="Xnapper-2024-03-01-22 07 34" src="https://github.com/syukranDev/inventory_app/assets/51852197/6038fc19-4417-42b0-9a7a-6f7b75cd5f22">
 <img width="1153" alt="Xnapper-2024-03-01-22 08 20" src="https://github.com/syukranDev/inventory_app/assets/51852197/eb03b486-6aa1-4d85-8116-79639c75512d">
