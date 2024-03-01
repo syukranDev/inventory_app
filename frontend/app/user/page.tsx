@@ -11,8 +11,8 @@ import axios from "axios"
 import TablePagination from "@/components/ui/TablePagination"
 import { pages } from "next/dist/build/templates/app-page"
 
-let isLoggedIn: any = localStorage.getItem('isLoggedIn');
-let userData: any = localStorage.getItem('data_user');
+let isLoggedIn: any = typeof window !== 'undefined' ? localStorage.getItem('isLoggedIn') : null;
+let userData: any = typeof window !== 'undefined' ? localStorage.getItem('data_user') : null;
 userData = JSON.parse(userData)
 
 const page = () => {

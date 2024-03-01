@@ -23,8 +23,8 @@ import { RocketIcon } from "@radix-ui/react-icons"
 import DeleteInventory from "@/components/ui/DeleteInventory"
 import Image from "next/image"
 
-let isLoggedIn: any = localStorage.getItem('isLoggedIn');
-let userData: any = localStorage.getItem('data_user');
+let isLoggedIn: any = typeof window !== 'undefined' ? localStorage.getItem('isLoggedIn') : null;
+let userData: any = typeof window !== 'undefined' ? localStorage.getItem('data_user') : null
 userData = JSON.parse(userData)
 
 const page = ({ params } : { params: {id : string}}) => {

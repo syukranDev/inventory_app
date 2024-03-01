@@ -5,8 +5,8 @@ import axios from "axios";
 import { redirect, useRouter } from 'next/navigation'
 import { revalidatePath } from "next/cache";
 
-let userData: any = localStorage.getItem('data_user') ;
-const isLoggedIn: any = localStorage.getItem('isLoggedIn')
+let userData: any = typeof window !== 'undefined' ? localStorage.getItem('data_user') : null
+const isLoggedIn: any = typeof window !== 'undefined' ? localStorage.getItem('isLoggedIn') : null
 userData = JSON.parse(userData)
 
 export default function Home() {
