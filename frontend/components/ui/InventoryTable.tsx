@@ -14,8 +14,6 @@ import ViewTransaction from "./ViewTransaction"
 
  
 const InventoryTable = ({contents, isDelete}: {contents:any, isDelete:any}) => {
-    console.log(contents)
-    // contents = []
   return (
     <>
         <Card>

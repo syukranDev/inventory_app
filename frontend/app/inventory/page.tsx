@@ -20,7 +20,6 @@ const page = () => {
 
   const searchParams = useSearchParams()
   const searchCurrentPage:any = searchParams.get('page')
-  console.log(searchCurrentPage)
 
   const page:any = parseInt(searchCurrentPage) || 1;
   const pageSize = 10;
@@ -30,9 +29,8 @@ const page = () => {
       const fetchData = async () => {
           
       try {
-          console.log(`is this running`)
           let response = await axios.get(`http://localhost:3003/api/inventory/list?page=${page}&limit_rows=${pageSize}`); // Replace with your API endpoint
-          // console.log(response.data.data.rows)
+          
           setData(response.data.data.rows)
           setDataCount(response.data.data.count)
       } catch (error) {

@@ -12,15 +12,15 @@ type UserData = {
 
 const Navbar = () => {
     const [data, setData] = useState('');
-    const [userData, setUserData] = useState<UserData | null>(null); // Specify UserData as the type for userData
+    const [userData, setUserData] = useState<UserData | null>(null); 
 
     useEffect(() => {
         let userDataFromLocalStorage: string | null = localStorage.getItem('data_user');
         let isLoggedIn: string | null = localStorage.getItem('isLoggedIn');
 
-        setData(isLoggedIn || ''); // Use default value if null
+        setData(isLoggedIn || ''); 
         setUserData(userDataFromLocalStorage ? JSON.parse(userDataFromLocalStorage) : null);
-    }, [data, userData]);
+    }, []);
 
     return (
         <nav className='border-b bg-background h-[6vh] flex items-center'>

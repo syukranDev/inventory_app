@@ -72,9 +72,8 @@ const page = ({ params } : { params: {id : string}}) => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                console.log(`is this running`)
                 let response = await axios.get(`http://localhost:3003/api/inventory/o/${params.id}`); // Replace with your API endpoint
-                // console.log(response.data.data.rows)
+                
                 setData(response.data.data)
             } catch (error) {
                 console.error('Error fetching data:', error);
@@ -82,10 +81,6 @@ const page = ({ params } : { params: {id : string}}) => {
         };
         fetchData();
     }, []);
-
-    console.log(data)
-
-    
 
     return (
         <>
