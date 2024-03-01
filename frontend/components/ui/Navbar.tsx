@@ -8,6 +8,7 @@ type UserData = {
     picture: string;
     name: string;
     status: string;
+    id: string;
 }
 
 const Navbar = () => {
@@ -34,7 +35,7 @@ const Navbar = () => {
 
                     { 
                         (data === 'true') && userData ? (
-                            <UserNav email={userData.status} image={userData.picture} name={userData.name } />
+                            <UserNav id={userData.id} email={userData.status} image={userData.picture} name={userData.name } />
                         ) : (
                             <div className="flex items-center gap-x-5">
                                 <Link href={'/login'}>

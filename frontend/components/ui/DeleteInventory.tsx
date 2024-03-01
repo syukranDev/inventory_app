@@ -28,7 +28,6 @@ const DeleteInventory = ({rowId}:any) => {
             console.error('Error fetching data:', error);
         }
 
-        revalidatePath('/inventory') 
         router.push('/inventory')
     }
 

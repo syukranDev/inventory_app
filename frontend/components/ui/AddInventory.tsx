@@ -66,7 +66,7 @@ const AddInventory = () => {
             console.error('Error fetching data:', error);
         }
 
-        revalidatePath('/inventory')
+        // revalidatePath('/inventory')
         return redirect('/inventory')
     }
 

@@ -22,8 +22,7 @@ export default function Home() {
       }
     } catch(e) {
       alert(`System Error - ${e}`)
-    }
-            
+    }         
   }
 
   return (
