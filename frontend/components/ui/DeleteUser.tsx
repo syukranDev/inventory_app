@@ -40,7 +40,7 @@ const DeleteUser = ({rowId}:any) => {
             <AlertDialogHeader>
                 <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
                 <AlertDialogDescription>
-                This action cannot be undone. This will permanently delete the inventory data.
+                This action cannot be undone. This will permanently delete the user data.
                 </AlertDialogDescription>
             </AlertDialogHeader>
             <AlertDialogFooter>

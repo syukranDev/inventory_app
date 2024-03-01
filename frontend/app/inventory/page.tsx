@@ -4,6 +4,7 @@ import Link from "next/link"
 import { Card } from "@/components/ui/card"
 import AddInventory from "@/components/ui/AddInventory"
 import InventoryTable from "@/components/ui/InventoryTable"
+import UploadBulkInventory from "@/components/ui/UploadBulkInventory"
 import { redirect, useSearchParams } from "next/navigation"
 import { useEffect } from "react"
 import { useState } from "react"
@@ -75,10 +76,13 @@ const updateTableDataForForwardPagination = async () => {
                 <div className="relative  w-full px-5 mx-auto lg:px-16 max-w-7xl md:px-12">
                     <div className="max-w-3xl mx-auto">
                         <div className="flex justify-between mb-10">
-                        <h1 className="mt-2 text-2xl font-semibold">Inventory Listing</h1>
+                            <h1 className="mt-2 text-2xl font-semibold">Inventory Listing</h1>
+                            <div className="flex gap-x-4">
+                            { userData.role == 'admin' && <UploadBulkInventory/>}
                             {
                                 userData.permission_create == 'true' && <AddInventory/>
                             }
+                            </div>
                         </div>
 
                         <InventoryTable contents={data} isDelete={true}/>

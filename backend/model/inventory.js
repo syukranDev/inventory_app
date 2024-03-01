@@ -9,7 +9,6 @@ module.exports = (sequelize, Sequelize) => {
       name: {
         type: Sequelize.TEXT,
         allowNull: false,
-        primaryKey: true
       },
       desc: {
         type: Sequelize.TEXT,

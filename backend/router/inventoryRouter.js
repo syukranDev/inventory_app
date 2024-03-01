@@ -7,6 +7,7 @@ const sq = db.sequelize;
 const limit = 10
 const dayjs = require('dayjs'); 
 const today = dayjs().format('YYYY-MM-DD');
+const faker = require('faker')
 
 router.get('/list', async (req, res) => {
   let page = req.query.page;
@@ -188,5 +189,42 @@ router.get('/delete/:id', async (req, res) => {
     return res.send({ status: 'success', message: `Delete inventory (ID-${id}) succesfully.`})
 })
 
+router.get('/populate', async (req, res) => {
+  let transaction;
+  try {
+      transaction=  await sq.transaction();
+      const types = ['food', 'medicine', 'electronic', 'mechanical', 'liquid']; // Limit types to 5 options
+      const data = [];
+
+      for (let i = 0; i < 1000; i++) {
+          const id = uuid();
+          const name = faker.commerce.productName();
+          const desc = faker.lorem.sentence();
+          const type = types[Math.floor(Math.random() * types.length)]; // Randomly select a type
+          const quantity = faker.random.number();
+
+          data.push({
+              id,
+              name,
+              desc,
+              type,
+              quantity: quantity,
+              status: 'active',
+              created_by: 'system_populate',
+              updated_by:'system_populate'
+          });
+      }
+
+      await db.inventory.bulkCreate(data, transaction)
+
+      await transaction.commit();
+
+      return res.send({ status: 'success', data,  message: `Successfully populated 100 rows of inventory`});
+  } catch (err) {
+      console.error(err);
+      await transaction.rollback();
+      return res.status(500).send({ errMsg: 'Failed to populate 100 rows of inventory' });
+  }
+});
 
 module.exports = router
