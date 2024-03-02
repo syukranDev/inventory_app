@@ -17,7 +17,7 @@ const DeleteUser = ({rowId}:any) => {
     const router = useRouter();
     async function deleteInventory() {
         try {
-            const response = await axios.get(`http://localhost:3003/api/user/delete/${rowId}`); // Replace with your API endpoint
+            const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_HOSTNAME}/api/user/delete/${rowId}`); // Replace with your API endpoint
             if (response.status === 200) { 
                 alert(`Info - User Deleted Succesfully.`)
             }

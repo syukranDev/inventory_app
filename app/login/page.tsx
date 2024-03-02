@@ -57,7 +57,7 @@ const page = () => {
     }
 
     try {
-      const response = await axios.post(`http://localhost:3003/api/auth/login`, payload); 
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_HOSTNAME}/api/auth/login`, payload); 
       if (response.status === 200) {
         localStorage.setItem('isLoggedIn', 'true');
         localStorage.setItem('data_user', JSON.stringify(response.data.data));

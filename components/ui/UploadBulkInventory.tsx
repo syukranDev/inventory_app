@@ -9,7 +9,7 @@ const UploadBulkInventory = () => {
     const [pending, setPending] = useState(false)
     async function addInventoryRows() {
         try {
-            const response = await axios.get(`http://localhost:3003/api/inventory/populate`);
+            const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_HOSTNAME}/api/inventory/populate`);
             setPending(true)
             if (response.status === 200) { 
                 alert(`Info - Inventory Data populated succesfully (1000 rows)`)

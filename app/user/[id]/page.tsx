@@ -70,7 +70,7 @@ const page = ({ params } : { params: {id : string}}) => {
         { alert('Invalid string. Only true @ false is accepted') }
         else {
             try {
-                const response = await axios.post(`http://localhost:3003/api/user/update/${params.id}`, payload); // Replace with your API endpoint
+                const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_HOSTNAME}/api/user/update/${params.id}`, payload); // Replace with your API endpoint
                 if (response.status === 200) { 
                     alert(`Info - User Updated Succesfully.`)
                 }
@@ -87,7 +87,7 @@ const page = ({ params } : { params: {id : string}}) => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                let response = await axios.get(`http://localhost:3003/api/user/o/${params.id}`); // Replace with your API endpoint
+                let response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_HOSTNAME}/api/user/o/${params.id}`); // Replace with your API endpoint
                 
                 setData(response.data.data)
             } catch (error) {

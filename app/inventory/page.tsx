@@ -32,7 +32,7 @@ const page = () => {
       const fetchData = async () => {
           
       try {
-          let response = await axios.get(`http://localhost:3003/api/inventory/list?page=${page}&limit_rows=${pageSize}`); // Replace with your API endpoint
+          let response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_HOSTNAME}/api/inventory/list?page=${page}&limit_rows=${pageSize}`); // Replace with your API endpoint
           
           setData(response.data.data.rows)
           setDataCount(response.data.data.count)
@@ -54,7 +54,7 @@ const page = () => {
 
 const updateTableDataForBackPagination = async () => {
     try {
-        const response = await axios.get(`http://localhost:3003/api/inventory/list?page=`+ (parseInt(page)-1).toString() ); 
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_HOSTNAME}/api/inventory/list?page=`+ (parseInt(page)-1).toString() ); 
         setData(response.data.data.rows);
     } catch (error) {
         console.error('Error fetching next page data:', error);
@@ -63,7 +63,7 @@ const updateTableDataForBackPagination = async () => {
 
 const updateTableDataForForwardPagination = async () => {
     try {
-        const response = await axios.get(`http://localhost:3003/api/inventory/list?page=`+ (parseInt(page)+1).toString()); 
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_HOSTNAME}/api/inventory/list?page=`+ (parseInt(page)+1).toString()); 
         setData(response.data.data.rows);
     } catch (error) {
         console.error('Error fetching next page data:', error);

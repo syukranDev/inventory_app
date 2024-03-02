@@ -56,7 +56,7 @@ const AddInventory = () => {
         let payload = { name, desc, type, quantity, status}
 
         try {
-            const response = await axios.post(`http://localhost:3003/api/inventory/add`, payload); // Replace with your API endpoint
+            const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_HOSTNAME}/api/inventory/add`, payload); // Replace with your API endpoint
             if (response.status === 200) { 
                 alert(`Info - Inventory Added Succesfully.`)
             }

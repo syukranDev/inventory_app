@@ -60,7 +60,7 @@ const AddInventory = () => {
         if (!roles.includes(role)) { alert('Invalid role. Only admin @ guest is accepted')}
          else {
              try {
-                 const response = await axios.post(`http://localhost:3003/api/user/add`, payload); 
+                 const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_HOSTNAME}/api/user/add`, payload); 
                  if (response.status === 200) { 
                      alert(`Info - User Added Succesfully.`)
                  }

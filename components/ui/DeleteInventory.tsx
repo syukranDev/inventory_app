@@ -18,7 +18,7 @@ const DeleteInventory = ({rowId}:any) => {
     const router = useRouter();
     async function deleteInventory() {
         try {
-            const response = await axios.get(`http://localhost:3003/api/inventory/delete/${rowId}`); // Replace with your API endpoint
+            const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_HOSTNAME}/api/inventory/delete/${rowId}`); // Replace with your API endpoint
             if (response.status === 200) { 
                 alert(`Info - Inventory Deleted Succesfully.`)
             }

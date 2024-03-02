@@ -17,7 +17,7 @@ const UserNav = ({id, name, email, image}: {id: string, name: string, email: str
     async function logoutUser() {
 
         try {
-            const response = await axios.post(`http://localhost:3003/api/auth/logout`, { username: id}); 
+            const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_HOSTNAME}/api/auth/logout`, { username: id}); 
             if (response.status === 200){
             localStorage.setItem('isLoggedIn', 'false');
             localStorage.removeItem('data_user');

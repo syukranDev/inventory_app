@@ -60,7 +60,7 @@ const page = ({ params } : { params: {id : string}}) => {
         if (!booleanS.includes(status)) { alert('Invalid string. Only active @ inactive is accepted') }
         else {
             try {
-                const response = await axios.post(`http://localhost:3003/api/inventory/update/${params.id}`, payload); // Replace with your API endpoint
+                const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_HOSTNAME}/api/inventory/update/${params.id}`, payload); // Replace with your API endpoint
                 if (response.status === 200) { 
                     alert(`Info - Inventory Updated Succesfully.`)
                 }
@@ -76,7 +76,7 @@ const page = ({ params } : { params: {id : string}}) => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                let response = await axios.get(`http://localhost:3003/api/inventory/o/${params.id}`); // Replace with your API endpoint
+                let response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_HOSTNAME}/api/inventory/o/${params.id}`); // Replace with your API endpoint
                 
                 setData(response.data.data)
             } catch (error) {
