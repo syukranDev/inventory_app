@@ -1,11 +1,10 @@
 # inventory_app
 Local Front Setup: <br/>
-> Clone this repo and run `npm install` &  `npm run dev`. <br/><br/>
+> Clone this repo and run `npm install` &  `npm run dev` <br/><br/>
 
 Local Backend Setup: <br/>
-> Clone repo and run `npm install` & `npm run dev` (I will share .env for very own live postgreSQL database accordingly, feel free to use it)
+> Clone repo and run `npm install` & `npm run dev` (I will share .env for accessing my very own live postgreSQL database accordingly, feel free to use it.)
 
-><br/>
 SEE PROD LIVE HERE: [(Click Me)](http://103.75.190.201/)
 
 ## Tech Stack
@@ -33,6 +32,7 @@ Permission CREATE, VIEW, UPDATE, DELETE applies on both users and inventory data
    - All backend API is unprotected. No JWT token needed.
    - Password is non-hashed.
    - Static inventory image is used for all data.
+   - Sorting is applies to listing API but not in UI.
 ```
 
 ## Misc 2:
