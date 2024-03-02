@@ -38,7 +38,7 @@ Permission CREATE, VIEW, UPDATE, DELETE applies on both users and inventory data
 
 ## Misc 2:
 ```
->> Will add Swagger and unit test, if time permits.
+>> Will add Swagger and unit test etc, if time permits by cut off date.
 ```
 
 
