@@ -33,6 +33,7 @@ Permission CREATE, VIEW, UPDATE, DELETE applies on both users and inventory data
    - Password is non-hashed.
    - Static inventory image is used for all data.
    - Sorting is applies to listing API but not in UI.
+   - Dark mode & mobile is not maintained, light mode & desktop view is recomendded.
 ```
 
 ## Misc 2:
