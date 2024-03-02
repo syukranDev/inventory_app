@@ -27,7 +27,7 @@ Permission CREATE, VIEW, UPDATE, DELETE applies on both users and inventory data
 
 ## Misc:
 ```
->> Populate Data button can be seen by user's roles = 'admin' only'
+>> Populate Data button can be seen by user with roles = 'admin' only'
 >> For the sake of simplicity and time constraint,
    - All backend API is unprotected. No JWT token needed.
    - Password is non-hashed.
