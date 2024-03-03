@@ -43,33 +43,6 @@ const page = () => {
       fetchData();
   }, []);
 
-  // const updateTableDataAfterAddNewTransaction = async () => {
-  //   try {
-  //       const response = await axios.get(`http://localhost:3003/api/transaction/list?page=1&user_id=${userId}`);
-  //       setData(response.data.data.rows);
-  //   } catch (error) {
-  //       console.error('Error fetching updated data:', error);
-  //   }
-  // };
-
-const updateTableDataForBackPagination = async () => {
-    try {
-        const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_HOSTNAME}/api/inventory/list?page=`+ (parseInt(page)-1).toString() ); 
-        setData(response.data.data.rows);
-    } catch (error) {
-        console.error('Error fetching next page data:', error);
-    }
-};
-
-const updateTableDataForForwardPagination = async () => {
-    try {
-        const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_HOSTNAME}/api/inventory/list?page=`+ (parseInt(page)+1).toString()); 
-        setData(response.data.data.rows);
-    } catch (error) {
-        console.error('Error fetching next page data:', error);
-    }
-};
-
   return (
      <>
         <section className="flex mt-10 h-[90vh]">
@@ -85,16 +58,9 @@ const updateTableDataForForwardPagination = async () => {
                             </div>
                         </div>
 
-                        <InventoryTable contents={data} isDelete={true}/>
+                        <InventoryTable contents={data} isDelete={true} page={page} pageSize={pageSize} dataCount={dataCount}/>
 
-                        <TablePagination 
-                                    pageSize={pageSize}
-                                    itemCount={dataCount}
-                                    currentPage={page}
-                                    updateTableDataForBackPagination={updateTableDataForBackPagination}
-                                    updateTableDataForForwardPagination={updateTableDataForForwardPagination}
-                        />
-                      
+                    
                     </div>
                 </div>
         </section>
