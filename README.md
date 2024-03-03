@@ -32,13 +32,13 @@ Permission CREATE, VIEW, UPDATE, DELETE applies on both users and inventory data
    - All backend API is unprotected. No JWT token needed.
    - Password is non-hashed.
    - Static inventory image is used for all data.
-   - Sorting is applies to listing API but not in UI.
+   - Sorting is applies to listing API but not in UI. (FIXED, inventory listing UI only)
    - Dark mode & mobile is not maintained, light mode & desktop view is recomendded.
 ```
 
 ## Misc 2:
 ```
->> Will add Swagger and unit test etc, if time permits before cut off date.
+>> Will add Swagger, unit test, bug-fixing etc, if time permits before cut off date.
 ```
 
 
