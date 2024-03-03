@@ -3,7 +3,7 @@ Local Front Setup: <br/>
 > Clone this repo and run `npm install` &  `npm run dev` <br/><br/>
 
 Local Backend Setup: <br/>
-> Clone repo and run `npm install` & `npm run dev` (I will share .env for accessing my very own live postgreSQL database accordingly, feel free to use it.)
+> Clone repo `backend-inventoryapp` and run `npm install` & `npm run dev` (I will share .env for accessing my very own live postgreSQL database accordingly, feel free to use it.)
 
 SEE PROD LIVE HERE: [(Click Me)](http://103.75.190.201/)
 
