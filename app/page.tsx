@@ -4,6 +4,8 @@ import Link from "next/link";
 import axios from "axios";
 import { redirect, useRouter } from 'next/navigation'
 import { revalidatePath } from "next/cache";
+import Lottie from 'lottie-react'
+import logo_home from '../public/assets/logo_home.json'
 
 let userData: any = typeof window !== 'undefined' ? localStorage.getItem('data_user') : null
 const isLoggedIn: any = typeof window !== 'undefined' ? localStorage.getItem('isLoggedIn') : null
@@ -34,13 +36,22 @@ export default function Home() {
               {/* <p>hello</p> */}
               <div className="">
                 <div>
-                  <h1 className="text-6xl font-semibold">
-
+                  <div className="text-center">
+                    <Lottie animationData={logo_home} className="h-[600px]"/>
+                  </div>
+                  <h1 className="text-6xl font-semibold mt-5">
                     {
                       userData?.name ? 
-                      (`Welcome, ${userData?.name}`) 
-                      : ('InventoryApp')
+                      (`Welcome `) 
+                      : ('Welcome to ')
                     }
+                    <span className="text-primary">
+                    {
+                      userData?.name ? 
+                      (`${userData?.name}!`) 
+                      : (<span className="text-primary">InventoryApp</span>)
+                    }
+                    </span>
                   </h1>
                 </div>
                 <h1 className="mt-5 mb-4 text-lg">A simple apps where you can try CRUD on inventory data.</h1>
