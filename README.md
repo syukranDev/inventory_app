@@ -36,10 +36,13 @@ Permission CREATE, VIEW, UPDATE, DELETE applies on both users and inventory data
    - Dark mode & mobile is not maintained, light mode & desktop view is recomendded.
 ```
 
-## Misc 2:
+## Unit Test:
 ```
->> Will add Swagger, unit test, bug-fixing etc, if time permits before cut off date.
+>> Head into backend_inventoryapp and install jest by `npm i -g jest`
+>> Run `jest`
 ```
+![image](https://github.com/syukranDev/inventory_app/assets/51852197/2a0486ed-4bcc-4e97-9256-caeca1c7e02e)
+
 
 
 ## Screenshot (in order)
