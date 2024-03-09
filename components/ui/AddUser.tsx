@@ -29,6 +29,7 @@ import {
   import { redirect } from 'next/navigation'
 import { revalidatePath, unstable_noStore as noStore } from 'next/cache'
 import axios from 'axios'
+import toast, { Toaster } from 'react-hot-toast';
   
 const AddInventory = () => {
     const [data, setData] = useState({
@@ -56,26 +57,28 @@ const AddInventory = () => {
         console.log(payload)
 
         const roles = ['admin', 'guest'];
-        if (!username || !password) alert('Kindly fill both username and password')
-        if (!roles.includes(role)) { alert('Invalid role. Only admin @ guest is accepted')}
+        if (!username || !password) toast.error('Kindly fill both username and password')
+        if (!roles.includes(role)) { toast.error('Invalid role. Only admin @ guest is accepted')}
          else {
              try {
                  const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_HOSTNAME}/api/user/add`, payload); 
                  if (response.status === 200) { 
-                     alert(`Info - User Added Succesfully.`)
+                     toast.success(`User Added Succesfully.`)
                  }
              } catch (error) {
                  console.error('Error fetching data:', error);
              }
      
              // revalidatePath('/user')
-             return redirect('/user')
+             setTimeout(() => {
+                window.location.href = "/user";
+            }, 1000); 
          }
-
     }
 
   return (
     <form>
+        <Toaster/>
         <Dialog>
             <DialogTrigger asChild>
                 <Button>Create New User</Button>

@@ -62,14 +62,16 @@ const page = ({ params } : { params: {id : string}}) => {
             try {
                 const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_HOSTNAME}/api/inventory/update/${params.id}`, payload); // Replace with your API endpoint
                 if (response.status === 200) { 
-                    alert(`Info - Inventory Updated Succesfully.`)
+                    // alert(`Info - Inventory Updated Succesfully.`)
+                    toast.success('Inventory updated succesfully');
                 }
             } catch (error) {
                 console.error('Error fetching data:', error);
             }
-    
-            // revalidatePath('/inventory') // adding in case no update found upon head to /dashboard due to cache
-            return redirect('/inventory')
+
+            setTimeout(() => {
+                window.location.href = "/inventory";
+            }, 1000); 
         }
     }
 

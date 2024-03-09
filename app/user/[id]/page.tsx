@@ -26,6 +26,7 @@ import DeleteUser from "@/components/ui/DeleteUser"
 import { useEffect, useState } from "react"
 import { Label } from "@radix-ui/react-dropdown-menu"
 import SubmitButton from "@/components/ui/SubmitButton"
+import toast, { Toaster } from 'react-hot-toast';
 
 let isLoggedIn: any = typeof window !== 'undefined' ? localStorage.getItem('isLoggedIn') : null;
 let userData: any = typeof window !== 'undefined' ? localStorage.getItem('data_user') : null;
@@ -72,14 +73,16 @@ const page = ({ params } : { params: {id : string}}) => {
             try {
                 const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_HOSTNAME}/api/user/update/${params.id}`, payload); // Replace with your API endpoint
                 if (response.status === 200) { 
-                    alert(`Info - User Updated Succesfully.`)
+                    toast.success(`User Updated Succesfully.`)
                 }
             } catch (error) {
-                alert('System Error');
+                toast.error('System Error');
             }
     
             // revalidatePath('/inventory') // adding in case no update found upon head to /dashboard due to cache
-            return redirect('/user')
+            setTimeout(() => {
+                window.location.href = "/user";
+            }, 1000); 
         }
     }
 
@@ -101,6 +104,7 @@ const page = ({ params } : { params: {id : string}}) => {
 
   return (
     <>
+      <Toaster/>
       <section className="flex mt-10 h-[90vh]">
           <div className="relative  w-full px-5 mx-auto lg:px-16 max-w-7xl md:px-12">
               <div className="max-w-3xl mx-auto">

@@ -27,6 +27,7 @@ import {
   import { redirect } from 'next/navigation'
 import { revalidatePath, unstable_noStore as noStore } from 'next/cache'
 import axios from 'axios'
+import toast, { Toaster } from 'react-hot-toast';
   
 const AddInventory = () => {
     const [data, setData] = useState({
@@ -58,7 +59,7 @@ const AddInventory = () => {
         try {
             const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_HOSTNAME}/api/inventory/add`, payload); // Replace with your API endpoint
             if (response.status === 200) { 
-                alert(`Info - Inventory Added Succesfully.`)
+                toast.success(`Inventory Added Succesfully.`)
             }
             
     
@@ -67,11 +68,14 @@ const AddInventory = () => {
         }
 
         // revalidatePath('/inventory')
-        return redirect('/inventory')
+        setTimeout(() => {
+            window.location.href = "/inventory";
+        }, 1000); 
     }
 
   return (
     <form>
+        <Toaster/>
         <Dialog>
             <DialogTrigger asChild>
                 <Button>Create New Inventory</Button>

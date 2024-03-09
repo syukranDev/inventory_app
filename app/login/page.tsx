@@ -25,6 +25,7 @@ import {
 import axios from "axios"
 import { redirect, useRouter } from 'next/navigation'
 import { revalidatePath } from "next/cache"
+import toast, { Toaster } from 'react-hot-toast';
  
 const formSchema = z.object({
   username: z.string().min(2, {
@@ -61,21 +62,26 @@ const page = () => {
       if (response.status === 200) {
         localStorage.setItem('isLoggedIn', 'true');
         localStorage.setItem('data_user', JSON.stringify(response.data.data));
+
+        toast.success('Login Successful')
         
         // router.push('/inventory')
-        window.location.href='/inventory'
+        setTimeout(() => {
+            window.location.href = "/inventory";
+        }, 1000); 
       } else {
         if(response.status === 404)
-        alert('Something went wrong. Gulp.')
+        toast.error('Something went wrong. Gulp.')
       }
     } catch (err) {
         console.log((err as any).response.data.errMsg)
-        alert(`System Error - ${(err as any).response.data.errMsg}`);
+        toast.error(`${(err as any).response.data.errMsg}`);
     }
   }
 
   return (
     <>
+      <Toaster/>
       <section className="flex mt-10 h-[90vh]">
           <div className="relative  w-full px-5 mx-auto lg:px-16 max-w-7xl md:px-12">
               <div className="max-w-3xl mx-auto">
