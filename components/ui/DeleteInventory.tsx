@@ -9,10 +9,11 @@ import {
     AlertDialogTitle,
     AlertDialogTrigger,
   } from "@/components/ui/alert-dialog"
-  import { Button } from "@/components/ui/button"
-  import axios from "axios";
-  import { redirect, useRouter } from 'next/navigation'
-  import { revalidatePath, unstable_noStore as noStore } from 'next/cache'
+import { Button } from "@/components/ui/button"
+import axios from "axios";
+import { redirect, useRouter } from 'next/navigation'
+import { revalidatePath, unstable_noStore as noStore } from 'next/cache'
+import toast, { Toaster } from 'react-hot-toast';
 
 const DeleteInventory = ({rowId}:any) => {
     const router = useRouter();
@@ -20,7 +21,7 @@ const DeleteInventory = ({rowId}:any) => {
         try {
             const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_HOSTNAME}/api/inventory/delete/${rowId}`); // Replace with your API endpoint
             if (response.status === 200) { 
-                alert(`Info - Inventory Deleted Succesfully.`)
+                toast.success(`Inventory Deleted Succesfully.`)
             }
             
     
@@ -29,11 +30,14 @@ const DeleteInventory = ({rowId}:any) => {
         }
 
         // router.push('/inventory')
-        window.location.href='/inventory'
+        setTimeout(() => {
+            window.location.href = "/inventory";
+        }, 1000);
     }
 
     return (
         <AlertDialog>
+            <Toaster/>
             <AlertDialogTrigger asChild>
             <Button variant="destructive">Delete</Button>
             </AlertDialogTrigger>

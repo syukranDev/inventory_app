@@ -68,7 +68,7 @@ const page = ({ params } : { params: {id : string}}) => {
             !booleanS.includes(permission_update) ||
             !booleanS.includes(permission_delete) 
            ) 
-        { alert('Invalid string. Only true @ false is accepted') }
+        { toast.error('Invalid string. Only true @ false is accepted') }
         else {
             try {
                 const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_HOSTNAME}/api/user/update/${params.id}`, payload); // Replace with your API endpoint

@@ -57,7 +57,7 @@ const page = ({ params } : { params: {id : string}}) => {
         let payload = { desc, type, quantity, status}
 
         const booleanS = ['active', 'inactive'];
-        if (!booleanS.includes(status)) { alert('Invalid string. Only active @ inactive is accepted') }
+        if (!booleanS.includes(status)) { toast.error('Invalid string. Only active @ inactive is accepted') }
         else {
             try {
                 const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_HOSTNAME}/api/inventory/update/${params.id}`, payload); // Replace with your API endpoint
