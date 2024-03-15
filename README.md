@@ -15,8 +15,13 @@ FrontEnd: NextJS on top of React, ShacdnUI & more..
 
 ## Test User:
 ```
+Login in 'admin' to get view all the pages available including CRUD screen.
 Role Admin (username:password) === admin:test@123 (grants all permission)
+
+Login in 'guest' to get view limited screen available.
 Role Guest (username:password) === guest:test@12345 (limited permission)
+
+NOTE: You may create new user or change existing user to test permission features.
 ```
 
 ## Permission:
