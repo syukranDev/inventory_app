@@ -10,6 +10,12 @@ import { useState } from "react"
 import axios from "axios"
 import TablePagination from "@/components/ui/TablePagination"
 import { pages } from "next/dist/build/templates/app-page"
+import { RocketIcon } from "@radix-ui/react-icons"
+import {
+  Alert,
+  AlertDescription,
+  AlertTitle,
+} from "@/components/ui/alert"
 
 let isLoggedIn: any = typeof window !== 'undefined' ? localStorage.getItem('isLoggedIn') : null;
 let userData: any = typeof window !== 'undefined' ? localStorage.getItem('data_user') : null;
@@ -81,16 +87,28 @@ const updateTableDataForForwardPagination = async () => {
                             }
                         </div>
 
-                        <UserTable contents={data} isDelete={true}/>
-
-                        <TablePagination 
-                                    pageSize={pageSize}
-                                    itemCount={dataCount}
-                                    currentPage={page}
-                                    updateTableDataForBackPagination={updateTableDataForBackPagination}
-                                    updateTableDataForForwardPagination={updateTableDataForForwardPagination}
-                        />
-                      
+                        {
+                            userData.permission_view == 'true' ? (
+                                <>
+                                    <UserTable contents={data} isDelete={true}/>
+                                    <TablePagination 
+                                                pageSize={pageSize}
+                                                itemCount={dataCount}
+                                                currentPage={page}
+                                                updateTableDataForBackPagination={updateTableDataForBackPagination}
+                                                updateTableDataForForwardPagination={updateTableDataForForwardPagination}
+                                    />
+                                </>
+                            ) : (
+                                <Alert>
+                                    <RocketIcon className="h-4 w-4" />
+                                    <AlertTitle>Permission Denied!</AlertTitle>
+                                    <AlertDescription>
+                                    Logged In Username ({userData.id}) have no permission to view User Listing. Kindly login as admin or contact admin to set the permission accordingly.
+                                    </AlertDescription>
+                                </Alert>
+                            )
+                        }
                     </div>
                 </div>
         </section>
