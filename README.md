@@ -41,6 +41,17 @@ Permission CREATE, VIEW, UPDATE, DELETE applies on both users and inventory data
    - Dark mode & mobile is not maintained, light mode & desktop view is recomendded.
 ```
 
+## API:
+```
+API Nodejs Codebase can been seen in repo called `backend-inventoryapp`
+>> api/inventory/list
+>> api/inventory/o/:id
+>> api/inventory/update/:id
+>> api/inventory/add
+>> api/inventory/delete/:id
+>> api/inventory/populate
+```
+
 ## Unit Test:
 ```
 >> Head into backend_inventoryapp and install jest by `npm i -g jest`
